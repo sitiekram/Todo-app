@@ -14,6 +14,16 @@ namespace Todo_app.Model
         {
             get { return todoId; }
         }
+        public bool Done
+        {
+            get { return done; }
+            set { done = value; }
+        }
+        public Person Assignee
+        {
+            get { return assignee;}
+            set { assignee = value; }
+        }
         public string Description
         {
             get { return description; }

@@ -6,13 +6,17 @@ namespace Todo_app.Data
 {
     public class PersonSequencer
     {
-        private static int personId;
-        public static int nextPersonId()
+        private static int personId=0;
+        public static int PersonId
         {
-            personId++;
+            get { return personId;}
+        }
+        public static int NextPersonId()
+        {
+            ++personId;
             return personId;
         }
-        public static void reset()
+        public static void Reset()
         {
             personId = 0;
         }

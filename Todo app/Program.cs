@@ -6,7 +6,8 @@ namespace Todo_app
     {
         static void Main(string[] args)
         {
-          
+        //    Console.WriteLine(Data.People.CreatePerson("dded", "dfgfd"));
+        //    Console.WriteLine(Data.People.FindAll());
         }
     }
 }

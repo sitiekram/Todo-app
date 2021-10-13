@@ -8,6 +8,19 @@ namespace Todo_app.Tests.DataTests
 {
     public class PersonSequencerTests
     {
-
+        [Fact]
+        public void NextPersonIdTest()
+        {
+            Assert.Equal(0, PersonSequencer.PersonId);
+            Assert.Equal(1, PersonSequencer.NextPersonId());
+            Assert.Equal(2, PersonSequencer.NextPersonId());
+        }
+        [Fact]
+        public void ResetTest()
+        {
+            Assert.NotEqual(0, PersonSequencer.PersonId);
+            PersonSequencer.Reset();
+            Assert.Equal(0, PersonSequencer.PersonId);
+        }
     }
 }

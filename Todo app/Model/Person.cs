@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Todo_app.Data;
 namespace Todo_app.Model
 {
     public class Person
     {
        private readonly int personId;
-       private static int idCounter = 0;
        private string firstName;
        private string lastName;
 
-       public int PersonID 
+       public int PersonId 
         {
             get { return personId; }
         }
@@ -55,13 +54,12 @@ namespace Todo_app.Model
         }
        public Person()
         {
-            this.personId = ++idCounter;
             FirstName = "Ekram";
             LastName = "Ahmedin";
         }
         public Person(string firstName,string lastName)
         {
-            this.personId = ++idCounter;
+            personId = PersonSequencer.NextPersonId();
             FirstName = firstName;
             LastName = lastName;
         }
