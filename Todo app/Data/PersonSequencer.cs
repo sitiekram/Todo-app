@@ -12,9 +12,8 @@ namespace Todo_app.Data
             get { return personId;}
         }
         public static int NextPersonId()
-        {
-            ++personId;
-            return personId;
+        { 
+            return ++personId;
         }
         public static void Reset()
         {
