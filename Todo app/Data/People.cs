@@ -48,10 +48,6 @@ namespace Todo_app.Data
         }
         public static void Clear()
         {
-            //for (int i = 0; i < Size(); i++)
-            //{
-            //    PersonArray[i] = null;
-            //}
             Person[] temPersonArray = new Person[0];
             PersonArray = temPersonArray;
         }

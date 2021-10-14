@@ -8,7 +8,11 @@ namespace Todo_app.Data
     public class TodoItems
     {
         private static Todo[] todoArray = new Todo[0];
-
+        
+        public static Todo[] TodoArray
+        {
+            get;set;
+        }
         public static int Size()
         {
             return todoArray.Length;
@@ -45,9 +49,10 @@ namespace Todo_app.Data
         }
         public static void Clear()
         {
-            //Array.Clear(people, null, Size());
+            Todo[] temTodoArray = new Todo[0];
+            TodoArray = temTodoArray;
         }
-        public Todo[] FindByDoneStatus(bool doneStatus)
+        public static Todo[] FindByDoneStatus(bool doneStatus)
         {
             Todo[] resultTodoArray = new Todo[0];
             int j = 0;
@@ -103,5 +108,6 @@ namespace Todo_app.Data
             }
             return resultTodoArray;
         }
+        
     }
 }
