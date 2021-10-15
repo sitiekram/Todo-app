@@ -19,7 +19,6 @@ namespace Todo_app.Tests.DataTests
         [Fact]
         public void ResetTest()
         {
-            TodoSequencer.NextTodoId();
             TodoSequencer.Reset();
             Assert.Equal(0, TodoSequencer.TodoId);
         }

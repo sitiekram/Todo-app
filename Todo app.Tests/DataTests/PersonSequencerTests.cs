@@ -18,7 +18,6 @@ namespace Todo_app.Tests.DataTests
         [Fact]
         public void ResetTest()
         {
-            PersonSequencer.NextPersonId();
             PersonSequencer.Reset();
             Assert.Equal(0, PersonSequencer.PersonId);
         }
