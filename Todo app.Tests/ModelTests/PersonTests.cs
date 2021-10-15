@@ -30,36 +30,23 @@ namespace Todo_app.Tests.ModelTests
             Assert.Equal("Andersson", sut.LastName);
         }
 
-        [Fact]
-        public void CheckFirstNameIsNotEmpty()
+        [Theory]
+        [InlineData("", "Andersson")]
+        [InlineData(null, "Andersson")]
+        public void CheckFirstName(string firstName,string lastName)
         {
-            string firstName ="";
-            string lastName = "Andersson";
             ArgumentException result= Assert.Throws<ArgumentException>(() => new Person(firstName, lastName));
             Assert.Equal("First name should be valid name", result.Message);
         }
-        [Fact]
-        public void CheckFirstNameIsNotNull()
-        {
-            string firstName = null;
-            string lastName = "Andersson";
-            Assert.Throws<NullReferenceException>(() => new Person(firstName, lastName));
-        }
 
-        [Fact]
-        public void CheckLastNameIsNotEmpty()
+        [Theory]
+        [InlineData("Tim","")]
+        [InlineData("Tim",null)]
+        public void CheckLastName(string firstName, string lastName)
         {
-            string firstName = "Tim";
-            string lastName = "";
             ArgumentException result = Assert.Throws<ArgumentException>(() => new Person(firstName, lastName));
             Assert.Equal("Last name should be valid name", result.Message);
         }
-        [Fact]
-        public void CheckLastNameIsNotNull()
-        {
-            string firstName = "Tim";
-            string lastName = null;
-            Assert.Throws<NullReferenceException>(() => new Person(firstName, lastName));
-        }
+        
     }
 }

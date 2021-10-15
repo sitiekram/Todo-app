@@ -7,10 +7,6 @@ namespace Todo_app.Data
     public class People
     {
         private static Person[] personArray =new Person[0];
-        public static Person[] PersonArray
-        {
-            get;set;
-        }
         public static int Size()
         {
             return personArray.Length;
@@ -36,7 +32,6 @@ namespace Todo_app.Data
         public static Person CreatePerson(string firstName,string lastName)
         {
             Person sut = new Person(firstName, lastName);
-            //sut.PersonId = PersonSequencer.nextPersonId();
             Person[] tempPersonArray = new Person[Size() + 1];
             for (int i = 0; i < Size();i ++)
             {
@@ -49,7 +44,33 @@ namespace Todo_app.Data
         public static void Clear()
         {
             Person[] temPersonArray = new Person[0];
-            PersonArray = temPersonArray;
+            personArray = temPersonArray;
+        }
+        public static void Remove(Person perRemove)
+        {
+            int index = Size();
+            int j = 0;
+            for (int i = 0; i < Size(); i++)
+            {
+                if (personArray[i] == perRemove)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if(index != Size())
+            {   
+                Person[] tempPersonArray = new Person[Size() - 1];
+                for (int i = 0; i < Size(); i++)
+                {
+                    if (i != index)
+                    {
+                        tempPersonArray[j] = personArray[i];
+                        j++;
+                    }
+                }
+                personArray = tempPersonArray;
+            }
         }
     }
 }

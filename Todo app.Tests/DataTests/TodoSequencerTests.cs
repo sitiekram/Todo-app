@@ -8,9 +8,11 @@ namespace Todo_app.Tests.DataTests
 {
     public class TodoSequencerTests
     {
+
         [Fact]
         public void NextTodoIdTest()
         {
+            TodoSequencer.TodoId = 0;
             Assert.Equal(0, TodoSequencer.TodoId);
             Assert.Equal(1, TodoSequencer.NextTodoId());
             Assert.Equal(2, TodoSequencer.NextTodoId());
@@ -18,8 +20,8 @@ namespace Todo_app.Tests.DataTests
         [Fact]
         public void ResetTest()
         {
-            Assert.NotEqual(0, TodoSequencer.TodoId);
-            PersonSequencer.Reset();
+            TodoSequencer.TodoId = 4;
+            TodoSequencer.Reset();
             Assert.Equal(0, TodoSequencer.TodoId);
         }
     }

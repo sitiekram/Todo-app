@@ -19,13 +19,9 @@ namespace Todo_app.Model
             get { return firstName; }
             set
             {
-               if(value.Equals(""))
+               if(string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("First name should be valid name");
-                }
-                else if (value.Equals(null))
-                {
-                    throw new NullReferenceException("First name can't be null");
                 }
                 else
                 {
@@ -38,13 +34,9 @@ namespace Todo_app.Model
             get { return lastName; }
             set
             {
-                if (value.Equals(""))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Last name should be valid name");
-                }
-                else if(value.Equals(null))
-                {
-                    throw new NullReferenceException("Last name can't be null");
                 }
                 else
                 {

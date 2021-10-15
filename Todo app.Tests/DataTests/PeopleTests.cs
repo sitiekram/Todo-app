@@ -9,19 +9,6 @@ namespace Todo_app.Tests.DataTests
 {
     public class PeopleTests
     {
-        //[Fact]
-        //public void SizeTest()
-        //{
-        //    People.PersonArray = new Person[3];
-        //    People.PersonArray[0] = new Person("Ekram", "Seid");
-        //    People.PersonArray[1] = new Person("Tim", "Corey");
-        //    People.PersonArray[2] = new Person("Marwan", "Ahmedin");
-
-
-        //    //People.PersonArray ={new Person("Ekram","Seid"),new Person("Tim","Corey"),new Person("Marwan","Ahmedin")};
-        //    Assert.Equal(3, People.Size());
-        //}
-
         [Fact]
         public void CreatePersonTest()
         {
@@ -33,16 +20,6 @@ namespace Todo_app.Tests.DataTests
             Assert.Equal("Ekram",per1.FirstName);
             Assert.Equal("Ahmedin",per1.LastName);
         }
-
-        [Fact]
-        public void FindByIdTest()
-        {
-            Person per1 = People.CreatePerson("Ekram", "Ahmedin");
-            Person per2 = People.CreatePerson("Tim", "Corey");
-            Person per3 = People.CreatePerson("Daniel", "Ulf");
-            Assert.Equal(per2, People.FindById(2));
-        }
-
         [Fact]
         public void ClearTest()
         {
@@ -50,7 +27,27 @@ namespace Todo_app.Tests.DataTests
             Person per2 = People.CreatePerson("Tim", "Corey");
             Person per3 = People.CreatePerson("Daniel", "Ulf");
             People.Clear();
-            Assert.Empty(People.PersonArray);
+            Assert.Empty(People.FindAll());
+        }
+
+        [Fact]
+        public void FindByIdTest()
+        {
+            Person per1 = People.CreatePerson("Ekram", "Ahmedin");
+            Person per2 = People.CreatePerson("Tim", "Corey");
+            Person per3 = People.CreatePerson("Daniel", "Ulf");
+            Person result = People.FindById(per2.PersonId);
+            Assert.Equal(per2,result);
+        }
+        [Fact]
+        public void RemoveTest()
+        {
+            Person per1 = People.CreatePerson("Ekram", "Ahmedin");
+            Person per2 = People.CreatePerson("Tim", "Corey");
+            Person per3 = People.CreatePerson("Daniel", "Ulf");
+            Person per4 = People.CreatePerson("Marwan", "Seid");
+            People.Remove(per2);
+            Assert.DoesNotContain(per2, People.FindAll());
         }
 
     }

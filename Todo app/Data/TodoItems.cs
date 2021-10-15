@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Todo_app.Model;
 
@@ -8,11 +9,6 @@ namespace Todo_app.Data
     public class TodoItems
     {
         private static Todo[] todoArray = new Todo[0];
-        
-        public static Todo[] TodoArray
-        {
-            get;set;
-        }
         public static int Size()
         {
             return todoArray.Length;
@@ -50,64 +46,58 @@ namespace Todo_app.Data
         public static void Clear()
         {
             Todo[] temTodoArray = new Todo[0];
-            TodoArray = temTodoArray;
+            todoArray = temTodoArray;
         }
         public static Todo[] FindByDoneStatus(bool doneStatus)
         {
-            Todo[] resultTodoArray = new Todo[0];
-            int j = 0;
-            for (int i = 0; i < Size(); i++)
-            {
-                if(todoArray[i].Done==doneStatus)
-                {
-                    resultTodoArray[j] = todoArray[i];
-                    j++;
-                }
-            }
+            IEnumerable<Todo> result = todoArray.Where(x => x.Done == doneStatus);
+            Todo[] resultTodoArray = result.ToArray();
             return resultTodoArray;
         }
-        public Todo[] FindByAssignee(int personId)
+        public static Todo[] FindByAssignee(int personId)
         {
-            Todo[] resultTodoArray = new Todo[0];
-            int j = 0;
-            for (int i = 0; i < Size(); i++)
-            {
-                if (todoArray[i].Assignee.PersonId == personId)
-                {
-                    resultTodoArray[j] = todoArray[i];
-                    j++;
-                }
-            }
+            IEnumerable<Todo> result = todoArray.Where(x => x.Assignee.PersonId == personId);
+            Todo[] resultTodoArray = result.ToArray();
             return resultTodoArray;
         }
-        public Todo[] FindByAssignee(Person assignee)
+        public static Todo[] FindByAssignee(Person assignee)
         {
-            Todo[] resultTodoArray = new Todo[0];
-            int j = 0;
-            for (int i = 0; i < Size(); i++)
-            {
-                if (todoArray[i].Assignee== assignee)
-                {
-                    resultTodoArray[j] = todoArray[i];
-                    j++;
-                }
-            }
+            IEnumerable<Todo> result = todoArray.Where(x => x.Assignee == assignee);
+            Todo[] resultTodoArray = result.ToArray();
             return resultTodoArray;
         }
-        public Todo[] FindUnassignedTodoItems()
+        public static Todo[] FindUnassignedTodoItems()
         {
-            Todo[] resultTodoArray = new Todo[0];
+            IEnumerable<Todo> result= todoArray.Where(x => x.Assignee == null);
+            Todo[] resultTodoArray = result.ToArray(); 
+            return resultTodoArray;
+        }
+        public static void Remove(Todo todoRemove)
+        {
+            int index=Size();
             int j = 0;
             for (int i = 0; i < Size(); i++)
             {
-                if (todoArray[i].Assignee == null)
+                if(todoArray[i]==todoRemove)
                 {
-                    resultTodoArray[j] = todoArray[i];
-                    j++;
+                    index = i;
+                    break;
                 }
             }
-            return resultTodoArray;
+            if (index != Size())
+            {
+                Todo[] tempTodoArray = new Todo[Size() - 1];
+                for (int i = 0; i < Size(); i++)
+                {
+                    if (i != index)
+                    {
+                        tempTodoArray[j] = todoArray[i];
+                        j++;
+                    }
+                }
+                todoArray = tempTodoArray;
+            }
+            
         }
-        
     }
 }

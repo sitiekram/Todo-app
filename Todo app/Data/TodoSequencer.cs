@@ -6,15 +6,15 @@ namespace Todo_app.Data
 {
     public class TodoSequencer
     {
-        private static int todoId=0;
+        private static int todoId;
         public static int TodoId
         {
-            get { return TodoId;}
+            get { return todoId; }
+            set { todoId = value; }
         }
         public static int NextTodoId()
         {
-            ++todoId;
-            return todoId;
+            return ++todoId;
         }
         public static void Reset()
         {
