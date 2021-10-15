@@ -12,15 +12,14 @@ namespace Todo_app.Tests.DataTests
         [Fact]
         public void NextTodoIdTest()
         {
-            TodoSequencer.TodoId = 0;
-            Assert.Equal(0, TodoSequencer.TodoId);
-            Assert.Equal(1, TodoSequencer.NextTodoId());
-            Assert.Equal(2, TodoSequencer.NextTodoId());
+            int todoIdNow = TodoSequencer.TodoId;
+            int testTodoId = TodoSequencer.NextTodoId();
+            Assert.Equal(todoIdNow + 1, testTodoId);
         }
         [Fact]
         public void ResetTest()
         {
-            TodoSequencer.TodoId = 4;
+            TodoSequencer.NextTodoId();
             TodoSequencer.Reset();
             Assert.Equal(0, TodoSequencer.TodoId);
         }

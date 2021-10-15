@@ -11,10 +11,9 @@ namespace Todo_app.Tests.DataTests
         [Fact]
         public void NextPersonIdTest()
         {
-            PersonSequencer.PersonId = 0;
-            Assert.Equal(0, PersonSequencer.PersonId);
-            Assert.Equal(1, PersonSequencer.NextPersonId());
-            Assert.Equal(2, PersonSequencer.NextPersonId());
+            int personIdNow = PersonSequencer.PersonId;
+            int testPersonId = PersonSequencer.NextPersonId();
+            Assert.Equal(personIdNow + 1, testPersonId);
         }
         [Fact]
         public void ResetTest()

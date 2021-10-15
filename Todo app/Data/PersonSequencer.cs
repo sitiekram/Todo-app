@@ -10,7 +10,6 @@ namespace Todo_app.Data
         public static int PersonId
         {
             get { return personId;}
-            set { PersonId = value; }
         }
         public static int NextPersonId()
         { 
